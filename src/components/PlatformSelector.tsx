@@ -3,7 +3,7 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import usePlatforms, { Platform } from "../Hooks/usePlatforms";
 
 interface PlatformSelectorProps {
-  onSelectPlatform: (platform: Platform) => void;
+  onSelectPlatform: (platform: Platform | null) => void;
   selectedPlatform: Platform | null;
 }
 
@@ -18,9 +18,12 @@ const PlatformSelector = ({
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<IoIosArrowDropdown />}>
-        {selectedPlatform?.name || "Platforms"}
+        {selectedPlatform?.name || "All Platforms"}
       </MenuButton>
       <MenuList>
+        <MenuItem onClick={() => onSelectPlatform(null)}>
+          All Platforms
+        </MenuItem>
         {data.map((platform) => (
           <MenuItem
             onClick={() => onSelectPlatform(platform)}
