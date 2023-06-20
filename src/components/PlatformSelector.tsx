@@ -1,8 +1,16 @@
 import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { IoIosArrowDropdown } from "react-icons/io";
-import usePlatforms from "../Hooks/usePlatforms";
+import usePlatforms, { Platform } from "../Hooks/usePlatforms";
 
-const PlatformSelector = () => {
+interface PlatformSelectorProps {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({
+  onSelectPlatform,
+  selectedPlatform,
+}: PlatformSelectorProps) => {
   const { data, error } = usePlatforms();
 
   if (error) return null;
@@ -10,11 +18,16 @@ const PlatformSelector = () => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<IoIosArrowDropdown />}>
-        Platforms
+        {selectedPlatform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
         {data.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            onClick={() => onSelectPlatform(platform)}
+            key={platform.id}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>
