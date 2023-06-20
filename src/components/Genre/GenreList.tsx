@@ -6,9 +6,10 @@ import GenreContainer from "./GenreContainer";
 
 interface GenreListProps {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: GenreListProps) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   const { data, error, isLoading } = useGenre();
   const skeleton = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
@@ -38,7 +39,14 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
                   borderRadius={8}
                   src={getCroppedImageUrl(genre.image_background)}
                 />
-                <Button fontSize="lg" variant="link" onClick={() => onSelectGenre(genre)}>
+                <Button
+                  fontSize="lg"
+                  variant="link"
+                  fontWeight={
+                    genre.id === selectedGenre?.id ? "bold" : "normal"
+                  }
+                  onClick={() => onSelectGenre(genre)}
+                >
                   {genre.name}
                 </Button>
               </HStack>
