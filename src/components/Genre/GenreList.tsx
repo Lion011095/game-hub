@@ -6,7 +6,7 @@ import {
   Button,
   Heading,
 } from "@chakra-ui/react";
-import useGenre, { Genre } from "../../Hooks/useGenre";
+import useGenre, { Genre } from "../../hooks/useGenre";
 import getCroppedImageUrl from "../../services/image-crop-url";
 import GenreSkeleton from "./GenreSkeleton";
 import GenreContainer from "./GenreContainer";
@@ -26,7 +26,9 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
 
   return (
     <>
-      <Heading marginBottom={3} fontSize='2xl'>Genres</Heading>
+      <Heading marginBottom={3} fontSize="2xl">
+        Genres
+      </Heading>
       <List>
         {isLoading &&
           skeleton.map((item) => (

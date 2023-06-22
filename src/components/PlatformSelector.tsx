@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { IoIosArrowDropdown } from "react-icons/io";
-import usePlatforms, { Platform } from "../Hooks/usePlatforms";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface PlatformSelectorProps {
   onSelectPlatform: (platform: Platform | null) => void;
