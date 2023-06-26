@@ -6,6 +6,5 @@ export default defineConfig({
   plugins: [react()],
   define: {
     "process.env.API_KEY": `"${process.env.API_KEY}"`,
-    __APP_ENV__: process.env.VITE_VERCEL_ENV,
   },
 });
