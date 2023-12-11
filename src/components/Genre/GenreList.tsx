@@ -13,10 +13,15 @@ import GenreContainer from "./GenreContainer";
 
 interface GenreListProps {
   onSelectGenre: (genre: Genre) => void;
+  onUnselectGenre: () => void;
   selectedGenre: Genre | null;
 }
 
-const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
+const GenreList = ({
+  selectedGenre,
+  onSelectGenre,
+  onUnselectGenre,
+}: GenreListProps) => {
   const { data, error, isLoading } = useGenre();
   const skeleton = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
@@ -58,7 +63,11 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
                   fontWeight={
                     genre.id === selectedGenre?.id ? "bold" : "normal"
                   }
-                  onClick={() => onSelectGenre(genre)}
+                  onClick={
+                    genre === selectedGenre
+                      ? () => onUnselectGenre()
+                      : () => onSelectGenre(genre)
+                  }
                 >
                   {genre.name}
                 </Button>

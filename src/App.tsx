@@ -40,6 +40,7 @@ function App() {
           <GenreList
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            onUnselectGenre={() => setGameQuery({ ...gameQuery, genre: null })}
           />
         </GridItem>
       </Show>
